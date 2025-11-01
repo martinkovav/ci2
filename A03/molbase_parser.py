@@ -23,4 +23,4 @@ soup = BeautifulSoup(html, "html.parser")
 for h3 in soup.find_all("h3"):
     title = h3.get("title")
     if title:
-        print(title.strip())
+        print(title)
