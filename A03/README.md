@@ -9,6 +9,11 @@ git clone https://github.com/martinkovav/ci2.git
 
 cd ci2/A03
 
+## Create virtual environment
+python3 -m venv venv
+
+source venv/bin/activate
+
 ## Install required packages
 pip3 install beautifulsoup4
 
