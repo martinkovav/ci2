@@ -5,8 +5,9 @@ This repository contains a small parser `molbase_parser.py` that extracts compou
 # Instructions to clone, set up, and run the script
 
 ## Clone the repository
-git clone https://github.com/martinkovav/ci2/A03.git
-cd martinkovav/ci2/A03
+git clone https://github.com/martinkovav/ci2.git
+
+cd ci2/A03
 
 ## Install required packages
 pip3 install beautifulsoup4
@@ -20,4 +21,4 @@ pip3 install beautifulsoup4
 ## Run the parser
 python3 molbase_parser.py molbase_benzidine.html
 
-This will print each found title attribute from <h3> elements, one per line.
+This will print each found title attribute from `<h3>` elements, one per line.
