@@ -5,22 +5,24 @@ This repository contains a script `cdx2png.py` that creates a set of .png (graph
 # Instructions to clone, set up, and run the script
 
 ## Clone the repository
+```
 git clone https://github.com/martinkovav/ci2.git
-
 cd ci2/A05
-
-unpack the chem-cdxml.zip directly to A05 folder
+```
 
 ## Create virtual environment
+```
 python3 -m venv venv
 source venv/bin/activate
-
+```
 ## Install required packages
+```
 pip3 install rdkit
 pip3 install openbabel-wheel
-pip3 install matplotlib
-
+```
 ## Run the script
+```
 python3 cdx2png.py *.cdxml
+```
 
 This will create .png files for each .cdxml file and prints the lowest and highest Mr.
