@@ -12,8 +12,8 @@ This folder contains the files and commands to reproduce the assignment:
 
 Clone the repository and enter the `A07` folder:
 ```bash
-git clone <your-repo-url>
-cd <your-repo>/A07
+git clone https://github.com/martinkovav/ci2.git
+cd ci2>/A07
 ```
 
 commands used:
