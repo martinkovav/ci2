@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ChEMBL SMILES Lookup</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>🧪 ChEMBL SMILES Lookup</h1>
+        <p class="subtitle">Search for chemical compounds by SMILES notation</p>
+
+        <form method="POST">
+            <div class="form-group">
+                <label for="smiles">Enter SMILES String:</label>
+                <input
+                    type="text"
+                    id="smiles"
+                    name="smiles"
+                    placeholder="e.g., CC(=O)Oc1ccccc1C(=O)O (Aspirin)"
+                    value="{{ smiles }}"
+                    required
+                >
+                <small style="color: #999; margin-top: 5px; display: block;">
+                    Example SMILES: CC(=O)Oc1ccccc1C(=O)O
+                </small>
+            </div>
+            <button type="submit">Search ChEMBL Database</button>
+        </form>
+
+        {% if error %}
+        <div class="alert alert-error">
+            <strong>Error:</strong> {{ error }}
+        </div>
+        {% endif %}
+
+        {% include 'result.html' %}
+    </div>
+</body>
+</html>

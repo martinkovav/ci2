@@ -1,0 +1,73 @@
+{% if result %}
+<div class="result-container">
+    <div class="result-header">
+        <h2>{{ result.pref_name or 'Unknown Compound' }}</h2>
+        <p>ChEMBL ID: <strong>{{ result.chembl_id }}</strong></p>
+    </div>
+
+    {% if result.molecule_image %}
+    <div class="molecule-image-container">
+        <div class="result-field">
+            <span class="field-label">Molecular Structure</span>
+            <div class="molecule-image">
+                {{ result.molecule_image|safe }}
+            </div>
+        </div>
+    </div>
+    {% endif %}
+
+    <div class="result-grid">
+        <div class="result-field">
+            <span class="field-label">Canonical SMILES</span>
+            <div class="field-value code">{{ result.canonical_smiles or 'N/A' }}</div>
+        </div>
+
+        <div class="result-field">
+            <span class="field-label">Molecular Formula</span>
+            <div class="field-value">{{ result.formula or 'N/A' }}</div>
+        </div>
+
+        <div class="result-field">
+            <span class="field-label">Molecular Weight</span>
+            <div class="field-value">
+                {% if result.mol_wt %}
+                    {{ "%.2f"|format(result.mol_wt) }} g/mol
+                {% else %}
+                    N/A
+                {% endif %}
+            </div>
+        </div>
+
+        <div class="result-field">
+            <span class="field-label">Database Link</span>
+            <div class="field-value">
+                <a href="https://www.ebi.ac.uk/chembl/explore/compound/{{ result.chembl_id }}"
+                   target="_blank"
+                   style="color: #667eea; text-decoration: none;">
+                    View on ChEMBL →
+                </a>
+            </div>
+        </div>
+
+        {% if result.synonyms and result.synonyms|length > 0 %}
+        <div class="result-field synonyms-container">
+            <span class="field-label">Synonyms</span>
+            <div class="synonyms-list">
+                {% for synonym in result.synonyms[:10] %}
+                <span class="synonym-tag">{{ synonym.molecule_synonym }}</span>
+                {% endfor %}
+                {% if result.synonyms|length > 10 %}
+                <span class="synonym-tag">+{{ result.synonyms|length - 10 }} more</span>
+                {% endif %}
+            </div>
+        </div>
+        {% endif %}
+    </div>
+
+    <form method="POST">
+        <button type="submit" name="new_search" value="true" class="new-search-btn">
+            ← Search Another Compound
+        </button>
+    </form>
+</div>
+{% endif %}
