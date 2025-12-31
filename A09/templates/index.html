@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ChEMBL SMILES Lookup</title>
+    <link rel="stylesheet" href="static/style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>🧪 ChEMBL SMILES Lookup</h1>
+        <p class="subtitle">Search for chemical compounds by SMILES notation</p>
+
+        <form id="searchForm">
+            <div class="form-group">
+                <label for="smiles">Enter SMILES String:</label>
+                <input
+                    type="text"
+                    id="smiles"
+                    name="smiles"
+                    placeholder="e.g., CC(=O)Oc1ccccc1C(=O)O (Aspirin)"
+                    required
+                >
+                <small style="color: #999; margin-top: 5px; display: block;">
+                    Example SMILES: CC(=O)Oc1ccccc1C(=O)O
+                </small>
+            </div>
+            <button type="submit">Search ChEMBL Database</button>
+        </form>
+
+        <div id="results"></div>
+
+        <!-- Result Template -->
+        <div id="resultTemplate" style="display: none;">
+            <div class="result-container">
+                <div class="result-header">
+                    <h2 id="compoundName">{{pref_name}}</h2>
+                    <p>ChEMBL ID: <strong id="chemblId">{{chembl_id}}</strong></p>
+                </div>
+
+                <div class="molecule-image-container">
+                    <div class="result-field">
+                        <span class="field-label">3D Molecular Structure</span>
+                        <div class="molecule-image">
+                            <img id="moleculeImage" src="{{image_url}}" alt="3D Molecule" style="max-width: 100%; height: auto;">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="result-grid">
+                    <div class="result-field">
+                        <span class="field-label">Canonical SMILES</span>
+                        <div class="field-value code" id="canonicalSmiles">{{canonical_smiles}}</div>
+                    </div>
+
+                    <div class="result-field">
+                        <span class="field-label">Molecular Formula</span>
+                        <div class="field-value" id="formula">{{formula}}</div>
+                    </div>
+
+                    <div class="result-field">
+                        <span class="field-label">Molecular Weight</span>
+                        <div class="field-value" id="molWt">{{mol_wt}}</div>
+                    </div>
+
+                    <div class="result-field">
+                        <span class="field-label">Database Link</span>
+                        <div class="field-value">
+                            <a id="chemblLink" href="https://www.ebi.ac.uk/chembl/explore/compound/{{chembl_id}}"
+                               target="_blank"
+                               style="color: #667eea; text-decoration: none;">
+                                View on ChEMBL →
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="result-field synonyms-container" id="synonymsContainer" style="display: none;">
+                        <span class="field-label">Synonyms</span>
+                        <div class="synonyms-list" id="synonymsList">
+                        </div>
+                    </div>
+                </div>
+
+                <button onclick="newSearch()" class="new-search-btn">
+                    ← Search Another Compound
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script src="static/script.js"></script>
+</body>
+</html>
