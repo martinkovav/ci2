@@ -6,7 +6,9 @@ The server has only one page from which all functionality is be accessible, and 
 - retrieves data from the remote chemistry web service
 - creates an image using command line utilities obabel and povray (saves it to a static folder) and sends JSON data containing the results back to the browser.
 
-# Instructions to clone, set up, and run the script
+The repository also contains a test file which verifies that the server correctly performed the required operation for succinic acid (reading correctly the data entered in the form, obtaining the correct data from the chemical server, creating a picture of the molecule) and that error message is displayed for nonexisting molecule.
+
+# Instructions to clone, set up, run and test the script
 
 ## Clone the repository
 
@@ -23,23 +25,28 @@ source venv/bin/activate
 
 ## Install required packages
 ```bash
+brew install povray
+brew install open-babel
 pip3 install Flask
 pip3 install chembl_webresource_client
 pip3 install flask-cors
 pip3 install playwright 
 pip3 install pytest-playwright 
 pip3 install pytest-playwright-asyncio        
+playwright install
 ```
-
-playwright codegen http://localhost:8000
 
 ## Run (debug)
 ```bash
 export FLASK_APP=app.py
 flask run --port 8000
+```
+Running on http://127.0.0.1:8000
+
+## Running the tests
+```bash
 pytest
 ```
-* Running on http://127.0.0.1:8000
 
 ## How to use the web page
 Enter SMILES String:
