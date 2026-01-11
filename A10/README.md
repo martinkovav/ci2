@@ -14,7 +14,7 @@ The repository also contains a test file which verifies that the server correctl
 
 ```bash
 git clone https://github.com/martinkovav/ci2.git
-cd ci2/A09
+cd ci2/A10
 ```
 
 ## Create virtual environment
