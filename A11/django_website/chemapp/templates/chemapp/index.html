@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chemistry App</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'chemapp/style.css' %}">
+</head>
+<body>
+    <nav>
+        <div class="nav-inner">
+            <h1><a href="{% url "chemapp:index" %}">Chemistry App</a></h1>
+            <ul>
+                <li><a href="{% url 'chemapp:chembl' %}">ChEMBL</a></li>
+                <li><a href="{% url 'chemapp:povray' %}">Povray</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main>
+        {% block content %}
+        <section class="hero">
+            <h2>Welcome to Chemistry App</h2>
+            <p>This is the home page. Use the navigation above to explore ChEMBL data or generate 3D molecule images with Povray.</p>
+        </section>
+        {% endblock %}
+    </main>
+</body>
+</html>

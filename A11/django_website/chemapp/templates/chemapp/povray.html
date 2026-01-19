@@ -1,0 +1,18 @@
+{% extends "chemapp/index.html" %}
+{% load static %}
+
+{% block content %}
+
+    <section class="hero">
+        <h2>Povray image generator</h2>
+        <p class="muted">Generate 3D molecule images from SMILES strings using Povray.</p>
+    </section>
+
+    {% include "chemapp/smiles_form.html" %}
+
+    {% if image_url %}
+        <h3>3D Structure for {{ smiles }}</h3>
+        <img src="{% static image_url %}" alt="Molecule Image">
+    {% endif %}
+
+{% endblock content %}

@@ -1,0 +1,43 @@
+{% extends "chemapp/index.html" %}
+
+{% block content %}
+
+    <section class="hero">
+        <h2>ChEMBL Lookup</h2>
+        <p class="muted">Find curated metadata for a molecule by providing its SMILES string.</p>
+    </section>
+
+    {% include "chemapp/smiles_form.html" %}
+
+    {% if molecule %}
+        <section class="card">
+            <h3>Results for {{ molecule.smiles }}</h3>
+            <div class="grid">
+                <div>
+                    <p class="muted">Identifiers</p>
+                    <ul>
+                        <li>ChEMBL ID: {{ molecule.chembl_id }}</li>
+                        <li>Preferred Name: {{ molecule.pref_name }}</li>
+                        <li>Formula: {{ molecule.formula }}</li>
+                        <li>Molecular Weight: {{ molecule.mol_wt }} g/mol</li>
+                    </ul>
+                </div>
+                <div>
+                    <p class="muted">Synonyms</p>
+                    {% if not molecule.synonyms %}
+                        <p class="muted">No synonyms found.</p>
+                    {% else %}
+                        <div>
+                            {% for synonym in molecule.synonyms %}
+                                <span class="pill">{{ synonym }}</span>
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+        </section>
+    {% elif error %}
+        <div class="notice">{{ error }}</div>
+    {% endif %}
+
+{% endblock content %}
